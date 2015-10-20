@@ -24,10 +24,24 @@ var shadowJss = "/* Find all assignments & views. */\n" +
 "        });\n" +
 "    });\n" +
 "}\n" +
-"jQuery(document).ready(function () { doShadow(); });\n" +
-"jQuery(window).click(function () { doShadow(); });" +
-"jQuery(window).scroll(function () { doShadow(); });" +
-"jQuery(window).keypress(function () { doShadow(); });";
+"/* Adding onClick handler only works when the element exists. This function makes sure the handler is not set, before" +
+" * the control-button exists." +
+"**/\n" +
+"function viewportNavigationExists() {\n" +
+"    if (jQuery('.control-button').length == 0) {\n" +
+"        setTimeout(viewportNavigationExists, 500);\n" +
+"    }\n" +
+"    else {\n" +
+"        jQuery('.control-button').click(function () { doShadow(); });\n" +
+"        doShadow();\n" +
+"    }\n" +
+"}\n" +
+"/* Add event handlers */\n" +
+"jQuery(document).ready(function () { viewportNavigationExists(); });\n" +
+"jQuery(window).click(function () { doShadow(); });\n" +
+"jQuery(window).scroll(function () { doShadow(); });\n" +
+"jQuery(window).keydown(function () { doShadow(); });\n" +
+"jQuery(window).keyup(function () { doShadow(); });\n";
 
 var script = document.createElement('script');
 var code = document.createTextNode(shadowJss);
