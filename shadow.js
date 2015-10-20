@@ -17,7 +17,7 @@ var shadowJss = "/* Find all assignments & views. */\n" +
 "            }\n" +
 "\n" +
 "            /* Gray the assignment if the assignment note contains our keyword. */\n" +
-"            if (assignment.get('notes') != null && assignment.get('notes').indexOf('#skygge') != -1)     {\n" +
+"            if (assignment.get('notes') != null && assignment.get('notes').indexOf('#skygge') != -1 && $(view.element).is('div') && $(view.element).hasClass('assignment')) {\n" +
 "                $(view.element).removeClass('gray orange red green aqua');\n" +
 "                $(view.element).addClass('gray');\n" +
 "            }\n" +
