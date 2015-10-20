@@ -1,0 +1,20 @@
+{
+  "manifest_version": 2,
+  "name": "Forecast Shadow Booking",
+  "description": "This extension will make shadowed bookings grey in the Harvest Forecast interface",
+  "version": "0.2",
+  "permissions": [
+    "activeTab",
+    "https://ajax.googleapis.com/"
+  ],
+  "content_scripts": [
+    {
+      "matches": ["https://forecastapp.com/*"],
+      "all_frames": true,
+      "js": [
+        "jquery-1.11.3.min.js",
+        "shadow.js"
+      ]
+    }
+  ]
+}
