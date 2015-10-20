@@ -23,7 +23,6 @@ var shadowJss = "/* Find all assignments & views. */\n" +
 "            }\n" +
 "        });\n" +
 "    });\n" +
-"    setTimeout(doShadow, 250);\n" +
 "}\n" +
 "jQuery(document).ready(function () { doShadow(); });";
 
