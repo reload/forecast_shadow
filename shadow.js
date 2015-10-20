@@ -24,7 +24,10 @@ var shadowJss = "/* Find all assignments & views. */\n" +
 "        });\n" +
 "    });\n" +
 "}\n" +
-"jQuery(document).ready(function () { doShadow(); });";
+"jQuery(document).ready(function () { doShadow(); });\n" +
+"jQuery(window).click(function () { doShadow(); });" +
+"jQuery(window).scroll(function () { doShadow(); });" +
+"jQuery(window).keypress(function () { doShadow(); });";
 
 var script = document.createElement('script');
 var code = document.createTextNode(shadowJss);
