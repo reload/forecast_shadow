@@ -12,7 +12,6 @@
       "matches": ["https://forecastapp.com/*"],
       "all_frames": true,
       "js": [
-        "jquery-1.11.3.min.js",
         "shadow.js"
       ]
     }

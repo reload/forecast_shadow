@@ -46,6 +46,11 @@ var shadowJss =
     "doShadow();\n" +
 "});\n";
 
+
+var jq = document.createElement('script');
+jq.setAttribute('src', '//ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js');
+(document.body || document.head).appendChild(jq);
+
 var script = document.createElement('script');
 var code = document.createTextNode(shadowJss);
 script.appendChild(code);
