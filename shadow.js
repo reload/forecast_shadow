@@ -7,7 +7,6 @@ var shadowJss =
     "$('.ember-view').each(function() {\n" +
             "/* Gray the assignment if the assignment title contains our keyword. */\n" +
             "if (jQuery($(this)).is('div') && jQuery($(this)).hasClass('assignment') && jQuery($(this)).hasClass('has-notes')) {\n" +
-"console.log('This works!');\n" +
                 "jQuery($(this)).removeClass('gray orange red green aqua blue purple magenta');\n" +
                 "jQuery($(this)).addClass('gray');\n" +
             "};\n" +
@@ -31,7 +30,6 @@ var shadowJss =
 
         "/* Add event handlers */\n" +
         "jQuery(document).ready(function () {\n" +
-            " console.log('doc ready');" +
             "viewportNavigationExists();\n" +
         "});\n" +
         "jQuery(window).click(function () {\n" +
