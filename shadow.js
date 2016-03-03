@@ -3,15 +3,18 @@ var shadowJss =
 "function doShadow() {\n" +
     "var forecastUrl = 'forecastapp.com';\n" +
     "if (jQuery('body').hasClass('ember-application') && (window.location.href.indexOf(forecastUrl) > -1 )) {\n" +
-
-    "$('.ember-view').each(function() {\n" +
+        "$('.ember-view').each(function() {\n" +
             "/* Gray the assignment if the assignment title contains our keyword. */\n" +
-            "if (jQuery($(this)).is('div') && jQuery($(this)).hasClass('assignment') && jQuery($(this)).hasClass('has-notes')) {\n" +
-                "jQuery($(this)).removeClass('gray orange red green aqua blue purple magenta');\n" +
+            "if (jQuery(this).is('div')\n" + 
+                "&& jQuery(this).hasClass('assignment')\n" +
+                "&& jQuery(this).hasClass('has-notes')\n" + 
+                "&& jQuery(this).filter('[title*=\"shadow\"]')\n" + 
+            ") {\n" +
+                "jQuery(this).removeClass('gray orange red green aqua blue purple magenta');\n" +
                 "jQuery($(this)).addClass('gray');\n" +
             "};\n" +
         "});\n" +
-        "}\n" +
+    "}\n" +
 "}\n" +
 "/**\n" +
 " * Adding onClick handler only works when the element exists.\n" +
