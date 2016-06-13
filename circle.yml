@@ -1,0 +1,8 @@
+dependencies:
+    post:
+        - gem source -a http://gemcutter.org
+        - gem install crxmake
+
+test:
+    post:
+        - crxmake --pack-extension=. --extension-output=$CIRCLE_ARTIFACTS/forecast_shadow-$CIRCLE_SHA1.crx
