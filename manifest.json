@@ -12,6 +12,7 @@
       "matches": ["https://forecastapp.com/*"],
       "all_frames": true,
       "js": [
+        "vendor/jquery-3.1.1.min.js",
         "shadow.js"
       ]
     }
