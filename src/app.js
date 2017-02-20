@@ -55,15 +55,10 @@ class Shadow {
       subtree: true,
     };
     const self = this;
-
     return new Promise((resolve) => {
       const observer = new MutationObserver(function (mutations) {
-        // For the sake of...observation...let's output the mutation to console to see how this all works.
         mutations.forEach((mutation) => {
-          self.throttle({
-            self.doShadows();
-            console.log(mutation.type);
-          }, 500);
+          self.doShadows();
         });
         resolve(mutations);
       });

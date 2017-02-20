@@ -68,9 +68,105 @@
 /************************************************************************/
 /******/ ([
 /* 0 */
-/***/ (function(module, exports) {
+/***/ (function(module, exports, __webpack_require__) {
 
-throw new Error("Module build failed: SyntaxError: Unexpected token, expected , (64:16)\n\n\u001b[0m \u001b[90m 62 | \u001b[39m        mutations\u001b[33m.\u001b[39mforEach((mutation) \u001b[33m=>\u001b[39m {\n \u001b[90m 63 | \u001b[39m          self\u001b[33m.\u001b[39mthrottle({\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 64 | \u001b[39m            self\u001b[33m.\u001b[39mdoShadows()\u001b[33m;\u001b[39m\n \u001b[90m    | \u001b[39m                \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 65 | \u001b[39m            console\u001b[33m.\u001b[39mlog(mutation\u001b[33m.\u001b[39mtype)\u001b[33m;\u001b[39m\n \u001b[90m 66 | \u001b[39m          }\u001b[33m,\u001b[39m \u001b[35m500\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m 67 | \u001b[39m        })\u001b[33m;\u001b[39m\u001b[0m\n");
+"use strict";
+/**
+ * @file
+ * Forecast shadow bookings.
+ */
+
+
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+var Shadow = function () {
+  function Shadow(domNode) {
+    _classCallCheck(this, Shadow);
+
+    this.domNode = domNode;
+  }
+
+  // Throttling to prevent event mayhem.
+
+
+  _createClass(Shadow, [{
+    key: 'throttle',
+    value: function throttle(callback, wait) {
+      var _arguments = arguments;
+      var context = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : this;
+
+      var timeout = null;
+      var callbackArgs = null;
+
+      var later = function later() {
+        callback.apply(context, callbackArgs);
+        timeout = null;
+      };
+
+      return function () {
+        if (!timeout) {
+          callbackArgs = _arguments;
+          timeout = setTimeout(later, wait);
+        }
+      };
+    }
+
+    // Find and alter shadow bookings.
+
+  }, {
+    key: 'doShadows',
+    value: function doShadows() {
+      var forecastUrl = 'forecastapp.com';
+      var bodyClasses = document.querySelector('body').className;
+      var checkClass = new RegExp('ember-application');
+      var isApp = checkClass.test(bodyClasses);
+      if (isApp && window.location.href.indexOf(forecastUrl) > -1) {
+        var assignments = document.querySelectorAll('.ember-view.assignment.has-notes');
+        if (assignments.length > 0) {
+          assignments.forEach(function (assignment) {
+            assignment.classList.remove('gray', 'orange', 'red', 'green', 'aqua', 'blue', 'purple', 'magenta');
+            assignment.classList.add('gray');
+          });
+        }
+      }
+    }
+
+    // Check for dom changes.
+
+  }, {
+    key: 'observe',
+    value: function observe() {
+      var targetNode = this.domNode;
+      var observerConfig = {
+        attributes: false,
+        childList: true,
+        characterData: true,
+        subtree: true
+      };
+      var self = this;
+      return new Promise(function (resolve) {
+        var observer = new MutationObserver(function (mutations) {
+          mutations.forEach(function (mutation) {
+            self.doShadows();
+          });
+          resolve(mutations);
+        });
+        observer.observe(targetNode, observerConfig);
+      });
+    }
+  }]);
+
+  return Shadow;
+}();
+
+// Start observing.
+
+
+var shadowBookings = new Shadow(document.body);
+shadowBookings.observe();
 
 /***/ })
 /******/ ]);
