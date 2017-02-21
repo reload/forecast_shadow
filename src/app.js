@@ -9,25 +9,6 @@ class Shadow {
   constructor(domNode) {
     this.domNode = domNode;
   }
-
-  // Throttling to prevent event mayhem.
-  throttle(callback, wait, context = this) {
-    let timeout = null;
-    let callbackArgs = null;
-
-    const later = () => {
-      callback.apply(context, callbackArgs);
-      timeout = null;
-    }
-
-    return () => {
-      if (!timeout) {
-        callbackArgs = arguments;
-        timeout = setTimeout(later, wait);
-      }
-    }
-  }
-
   // Find and alter shadow bookings.
   doShadows() {
     const bodyClasses = document.querySelector('body').className;
@@ -43,7 +24,6 @@ class Shadow {
       }
     }
   }
-
   // Check for dom changes.
   observe() {
     const targetNode = this.domNode;
@@ -65,7 +45,6 @@ class Shadow {
     });
   }
 }
-
 // Start observing.
 const shadowBookings = new Shadow(document.body);
 shadowBookings.observe();
