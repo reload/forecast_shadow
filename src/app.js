@@ -30,11 +30,10 @@ class Shadow {
 
   // Find and alter shadow bookings.
   doShadows() {
-    const forecastUrl = 'forecastapp.com';
     const bodyClasses = document.querySelector('body').className;
     const checkClass = new RegExp('ember-application');
     const isApp = checkClass.test(bodyClasses);
-    if (isApp && (window.location.href.indexOf(forecastUrl) > -1)) {
+    if (isApp) {
       const assignments = document.querySelectorAll('.ember-view.assignment.has-notes');
       if (assignments.length > 0) {
         assignments.forEach((assignment) => {
