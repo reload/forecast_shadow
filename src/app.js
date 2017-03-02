@@ -19,7 +19,7 @@ class Shadow {
       if (assignments.length) {
         assignments.forEach((assignment) => {
           assignment.classList.remove('gray', 'orange', 'red', 'green', 'aqua', 'blue', 'purple', 'magenta');
-          assignment.classList.add('gray');
+          assignment.classList.add('shadow-booking');
         });
       }
     }
