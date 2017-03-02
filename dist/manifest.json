@@ -16,6 +16,9 @@
     {
       "matches": ["https://forecastapp.com/*"],
       "all_frames": true,
+      "css": [
+        "style.css"
+      ],
       "js": [
         "app.js"
       ]

@@ -1,0 +1,18 @@
+@import 'bourbon';
+
+$light: rgba(50, 50, 50, 0.5);
+$dark: rgba(100, 100, 100, 0.5);
+
+.shadow-booking {
+  background: linear-gradient(
+    -45deg,
+    $light 25%,
+    $dark 25%,
+    $dark 50%,
+    $light 50%,
+    $light 75%,
+    $dark 75%
+  ) !important;
+  background-size: 6px 6px !important;
+  background-repeat: repeat !important;
+}
