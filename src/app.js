@@ -16,7 +16,7 @@ class Shadow {
     const isApp = checkClass.test(bodyClasses);
     if (isApp) {
       const assignments = document.querySelectorAll('.ember-view.assignment.has-notes');
-      if (assignments.length > 0) {
+      if (assignments.length) {
         assignments.forEach((assignment) => {
           assignment.classList.remove('gray', 'orange', 'red', 'green', 'aqua', 'blue', 'purple', 'magenta');
           assignment.classList.add('gray');
