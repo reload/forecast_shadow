@@ -1,4 +1,8 @@
-// webpack.config.js
+/**
+ * @file
+ * webpack.config.js
+ */
+
 module.exports = {
   entry: './src/app.js',
   output: { filename: 'app.js', path: 'dist' },
@@ -10,10 +14,10 @@ module.exports = {
         loader: 'babel-loader',
         options: {
           presets: [
-            [ 'es2015', { modules: false } ]
-          ]
-        }
-      }
-    ]
-  }
+            ['es2015', { modules: false }],
+          ],
+        },
+      },
+    ],
+  },
 };
