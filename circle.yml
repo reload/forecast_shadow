@@ -1,8 +1,14 @@
+machine:
+  node:
+    version: 7.6.0
+
 dependencies:
-    post:
-        - gem source -a http://gemcutter.org
-        - gem install crxmake
+  post:
+      - npm install
+      - gem source -a http://gemcutter.org
+      - gem install crxmake
 
 test:
-    post:
-        - crxmake --pack-extension=. --extension-output=$CIRCLE_ARTIFACTS/forecast_shadow-$CIRCLE_SHA1.crx
+  post:
+    - npm start
+    - crxmake --pack-extension=./dist --extension-output=$CIRCLE_ARTIFACTS/forecast_shadow-$CIRCLE_SHA1.crx
