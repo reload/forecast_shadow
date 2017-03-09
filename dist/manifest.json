@@ -1,8 +1,8 @@
 {
   "manifest_version": 2,
   "name": "Forecast Shadow Booking",
-  "description": "This extension will make shadowed bookings grey in the Harvest Forecast interface",
-  "version": "0.6.0",
+  "description": "This extension will alter bookings with labels to be displayed as shadow bookings.",
+  "version": "0.6.1",
   "icons": {
     "16": "icon-16.png",
     "48": "icon-48.png",
