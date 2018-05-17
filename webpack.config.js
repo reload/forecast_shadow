@@ -3,9 +3,11 @@
  * webpack.config.js
  */
 
+ const path = require('path')
+
 module.exports = {
   entry: './src/app.js',
-  output: { filename: 'app.js', path: 'dist' },
+  output: { filename: 'app.js', path: path.join(__dirname, 'dist') },
   module: {
     rules: [
       {
@@ -14,10 +16,10 @@ module.exports = {
         loader: 'babel-loader',
         options: {
           presets: [
-            ['es2015', { modules: false }],
-          ],
-        },
-      },
-    ],
-  },
-};
+            ['es2015', { modules: false }]
+          ]
+        }
+      }
+    ]
+  }
+}
