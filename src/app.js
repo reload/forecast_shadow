@@ -3,48 +3,41 @@
  * Forecast shadow bookings.
  */
 
-'use strict';
+'use strict'
 
 class Shadow {
-  constructor(domNode) {
-    this.domNode = domNode;
+  constructor (domNode) {
+    this.domNode = domNode
+    this.tag = '@shadow'
   }
-  // Find and alter shadow bookings.
-  doShadows() {
-    const bodyClasses = document.querySelector('body').className;
-    const checkClass = new RegExp('ember-application');
-    const isApp = checkClass.test(bodyClasses);
-    if (isApp) {
-      const assignments = document.querySelectorAll('.ember-view.assignment.has-notes');
-      if (assignments.length) {
-        assignments.forEach((assignment) => {
-          assignment.classList.remove('gray', 'orange', 'red', 'green', 'aqua', 'blue', 'purple', 'magenta');
-          assignment.classList.add('shadow-booking');
-        });
+
+  setShadows (nodes) {
+    for (let node of nodes) {
+      const icon = node.querySelector('.icon')
+      icon.dispatchEvent(new MouseEvent('mouseover', { bubbles: true }))
+      if (this.domNode.querySelector('.tooltip').textContent.toLowerCase().includes(this.tag)) {
+        node.classList.add('shadow-booking')
+        node.classList.remove('gray', 'orange', 'red', 'green', 'aqua', 'blue', 'purple', 'magenta')
       }
+      icon.dispatchEvent(new MouseEvent('mouseout', { bubbles: true }))
     }
   }
-  // Check for dom changes.
-  observe() {
-    const targetNode = this.domNode;
-    const observerConfig = {
-      attributes: false,
+
+  observe () {
+    new MutationObserver((mutations) => {
+      const nodes = mutations.filter((mutation) => {
+        return mutation.type === 'childList' && [...mutation.target.classList].includes('has-notes')
+      }).reduce((nodes, mutation) => {
+        nodes.push(mutation.target)
+        return nodes
+      }, [])
+      this.setShadows(nodes)
+    }).observe(this.domNode, {
       childList: true,
-      characterData: true,
-      subtree: true,
-    };
-    const self = this;
-    return new Promise((resolve) => {
-      const observer = new MutationObserver(function (mutations) {
-        mutations.forEach((mutation) => {
-          self.doShadows();
-        });
-        resolve(mutations);
-      });
-      observer.observe(targetNode, observerConfig);
-    });
+      subtree: true
+    })
   }
 }
-// Start observing.
-const shadowBookings = new Shadow(document.body);
-shadowBookings.observe();
+
+const shadowBookings = new Shadow(document.body)
+shadowBookings.observe()
