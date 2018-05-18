@@ -2,7 +2,7 @@
   "manifest_version": 2,
   "name": "Forecast Shadow Booking",
   "description": "This extension will alter bookings with labels to be displayed as shadow bookings.",
-  "version": "0.6.1",
+  "version": "0.6.2",
   "icons": {
     "16": "icon-16.png",
     "48": "icon-48.png",
