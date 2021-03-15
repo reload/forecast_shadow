@@ -31,7 +31,7 @@ jobs:
       uses: github/codeql-action/autobuild@v1
 
     - run: |
-        yarn install    # Initializes the CodeQL tools for scanning.
+        npm install
 
     - name: Perform CodeQL Analysis
       uses: github/codeql-action/analyze@v1
